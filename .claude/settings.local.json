@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tsc:*)",
+      "Bash(npx vite build:*)",
+      "Bash(ls:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 3 npx tsx:*)",
+      "Bash(ngrok version:*)",
+      "Bash(chmod:*)"
+    ]
+  }
+}
