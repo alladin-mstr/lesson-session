@@ -14,80 +14,84 @@ export const slides: Slide[] = [
     type: "content",
     title: "Ice Breaker Quiz",
     content:
-      "Before we dive in — let's see how much you remember from the learning sessions! Grab your phone, scan the QR code, and join the quiz. Fastest answers score the most points.",
+      "Grab your phone, scan the QR code, and join the quiz.",
     number: "01",
   },
   {
     id: 3,
     type: "content",
-    title: "The Core Principle",
+    title: "What's the Point?",
     content:
-      "If something requires a user to think, it's probably not as good as it could be. Users should be able to understand what things are and how to use them without expending any mental effort.",
+      "A competitor with better UX will win your users — even if your product does the same thing.",
     number: "02",
   },
   {
     id: 4,
-    type: "list",
-    title: "Key Usability Guidelines",
-    content: [
-      "Create clear visual hierarchies",
-      "Take advantage of conventions",
-      "Break pages into clearly defined areas",
-      "Make it obvious what's clickable",
-      "Eliminate question marks",
-      "Omit needless words",
-    ],
+    type: "quote",
+    title: "First Law of Usability",
+    content:
+      "\"What's the most important thing I should do if I want to make sure my site or app is easy to use?\" The answer is simple. It's not \"Nothing important should ever be more than two clicks away\" or \"Speak the user's language\" or \"Be consistent.\" It's… Don't make me think!",
     number: "03",
   },
   {
     id: 5,
-    type: "content",
-    title: "How Users Navigate",
-    content:
-      "Users don't read pages — they scan them. They don't make optimal choices — they satisfice. They don't figure out how things work — they muddle through. Design for this behavior, not for ideal users.",
+    type: "list",
+    title: "Examples",
+    content: [
+      "Google's \"45-Second Stare\" — users couldn't find the footer.",
+      "Checkbox vs Radio — circular selectors look like radio buttons.",
+      "Bounce Effect — instant signal you've reached the edge.",
+    ],
     number: "04",
   },
   {
     id: 6,
     type: "list",
-    title: "Navigation Best Practices",
+    title: "Diminishing Goodwill",
     content: [
-      "Persistent navigation on every page",
-      "Clear site ID and page name",
-      "Breadcrumbs for orientation",
-      "Search functionality when needed",
-      "Clear section indicators",
+      "Hiding information that I want.",
+      "Punishing me for not doing things your way.",
+      "Asking me for information you don't really need.",
+      "Your site looks amateurish.",
     ],
     number: "05",
   },
   {
     id: 7,
-    type: "content",
-    title: "Mobile Usability",
-    content:
-      "Design for thumbs, not cursors. Simplify navigation, prioritize content, and make touch targets generous. The mobile experience should be a first-class citizen, not an afterthought.",
+    type: "list",
+    title: "Building Goodwill",
+    content: [
+      "Make the main things obvious and easy.",
+      "Tell me what I want to know.",
+      "Save me steps wherever you can.",
+      "Put effort into it.",
+      "Make it easy to recover from errors.",
+    ],
     number: "06",
   },
   {
     id: 8,
     type: "content",
-    title: "Usability Testing",
+    title: "Demo",
     content:
-      "Testing with just a few users — even one! — is better than no testing. Test early and often. The goal is to find problems, not to prove your design is perfect.",
+      "**Live redesign** of a ticket creation app — improving its **usability** step by step.",
     number: "07",
   },
   {
-    id: 9,
-    type: "list",
-    title: "Key Takeaways",
-    content: [
-      "Usability is about making things work well",
-      "Users are busy and impatient",
-      "Good design is invisible — bad design is obvious",
-      "Test with real users, not assumptions",
-      "Small improvements can have big impacts",
-    ],
+    id: 11,
+    type: "content",
+    title: "Live Redesign",
+    content:
+      "Let's improve this form together.",
     number: "08",
+  },
+  {
+    id: 9,
+    type: "content",
+    title: "So Now What?",
+    content:
+      "Be **mindful of the experience** you're building. Your app should not be a **puzzle** — it should be a **familiar home** where you can get to the bathroom at 3 AM with the lights out.",
+    number: "09",
   },
   {
     id: 10,
@@ -95,6 +99,6 @@ export const slides: Slide[] = [
     title: "Thank You",
     content:
       "The best interface is no interface. When you can't avoid an interface, make it so simple that users don't have to think about how to use it.",
-    number: "09",
+    number: "10",
   },
 ]
