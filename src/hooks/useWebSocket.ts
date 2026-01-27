@@ -3,18 +3,13 @@ import type { ClientMessage, ServerMessage } from "../types/quiz";
 
 type MessageHandler = (msg: ServerMessage) => void;
 
-// Resolve WebSocket URL: use ngrok config if available, else fallback to localhost
-let _wsUrlPromise: Promise<string> | null = null;
-function getWsUrl(): Promise<string> {
-  if (_wsUrlPromise) return _wsUrlPromise;
-  _wsUrlPromise = fetch("/ngrok-config.json")
-    .then((r) => (r.ok ? r.json() : null))
-    .then((cfg) => {
-      if (cfg?.wsUrl) return cfg.wsUrl as string;
-      return `ws://${window.location.hostname}:3001`;
-    })
-    .catch(() => `ws://${window.location.hostname}:3001`);
-  return _wsUrlPromise;
+// Resolve WebSocket URL: VITE_WS_URL in production (e.g. Vercel), else same-origin /ws (local proxy) or localhost:3001
+function getWsUrl(): string {
+  const env = import.meta.env.VITE_WS_URL;
+  if (env) return env;
+  const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+  const host = window.location.host;
+  return `${protocol}//${host}/ws`;
 }
 
 export function useWebSocket() {
@@ -24,11 +19,11 @@ export function useWebSocket() {
   const reconnectTimer = useRef<ReturnType<typeof setTimeout>>();
   const wsUrlRef = useRef<string | null>(null);
 
-  const connect = useCallback(async () => {
+  const connect = useCallback(() => {
     if (wsRef.current?.readyState === WebSocket.OPEN) return;
 
     if (!wsUrlRef.current) {
-      wsUrlRef.current = await getWsUrl();
+      wsUrlRef.current = getWsUrl();
     }
     const ws = new WebSocket(wsUrlRef.current);
 

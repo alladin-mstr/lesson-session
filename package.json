@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite\" \"tsx server/index.ts\"",
-    "dev:tunnel": "concurrently \"vite\" \"tsx server/index.ts\" \"./scripts/start-tunnels.sh\"",
     "dev:client": "vite",
     "dev:server": "tsx server/index.ts",
     "build": "vite build",
+    "start": "tsx server/production.ts",
     "preview": "vite preview"
   },
   "dependencies": {

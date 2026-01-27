@@ -79,19 +79,7 @@ export function AboutBookDemo() {
   const [joinUrl, setJoinUrl] = useState("")
 
   useEffect(() => {
-    // Try to load ngrok config for public URL, fallback to current origin
-    fetch("/ngrok-config.json")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((cfg) => {
-        if (cfg?.appUrl) {
-          setJoinUrl(`${cfg.appUrl}/#/quiz/play`)
-        } else {
-          setJoinUrl(`${window.location.origin}/#/quiz/play`)
-        }
-      })
-      .catch(() => {
-        setJoinUrl(`${window.location.origin}/#/quiz/play`)
-      })
+    setJoinUrl(`${window.location.origin}/#/quiz/play`)
   }, [])
 
   if (!joinUrl) return null
