@@ -449,13 +449,14 @@ function ContentSlide({ slide, demo: Demo }: { slide: Slide; demo?: React.Compon
   const isDemo = slide.id === 8
   const isCanvas = slide.id === 11
 
-  const demoPrompt = `Redesign this ticket creation form to improve usability:
+  const demoPrompt = `Redesign the slide 8 ticket creation form to improve usability:
 - Add smart defaults for status (Open) and priority (Medium)
 - Set start date to today by default
 - Create clear visual hierarchy — group related fields
 - Make the submit button prominent with a clear CTA
 - Add inline validation and helpful placeholders
-- Consider which fields are truly required vs optional`
+- Consider which fields are truly required vs optional
+- It should look like Linear where the options are just badges`
 
   const copyPrompt = () => {
     navigator.clipboard.writeText(demoPrompt)
