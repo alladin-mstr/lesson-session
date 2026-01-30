@@ -86,6 +86,14 @@ export function QuizPlayer() {
           alert(msg.message);
         }
       }),
+      on("game_reset", () => {
+        // Full game reset - return to join screen
+        setPhase("join");
+        setNickname("");
+        setQuestionInfo(null);
+        setResultInfo(null);
+        setFinishInfo(null);
+      }),
     ];
 
     return () => unsubs.forEach((u) => u());

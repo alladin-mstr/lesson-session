@@ -140,23 +140,25 @@ export class GameManager {
   }
 
   private resetGame() {
+    // Notify all players they've been removed before clearing
+    this.broadcast({ type: "game_reset" });
+
     // Reset game state
     this.phase = "lobby";
     this.currentQuestionIndex = 0;
     this.questionStartTime = null;
     this.answers.clear();
 
-    // Reset all players' scores and streaks
-    for (const player of this.players.values()) {
-      player.score = 0;
-      player.streak = 0;
-      player.lastAnswerCorrect = null;
-      player.lastPoints = 0;
-      player.currentAnswer = null;
-      player.answerTime = null;
+    // Clear all players
+    this.players.clear();
+    this.playerIdCounter = 0;
+
+    // Clear player IDs from connected clients
+    for (const client of this.clients) {
+      client.playerId = null;
     }
 
-    // Notify everyone to go back to lobby
+    // Notify hosts of empty lobby
     this.sendLobbyUpdate();
   }
 

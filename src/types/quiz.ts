@@ -86,4 +86,5 @@ export type ServerMessage =
       playerScore?: number;
     }
   | { type: "error"; message: string }
-  | { type: "joined"; playerId: string };
+  | { type: "joined"; playerId: string }
+  | { type: "game_reset" };
