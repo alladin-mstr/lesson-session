@@ -456,7 +456,7 @@ function ContentSlide({ slide, demo: Demo }: { slide: Slide; demo?: React.Compon
 - Make the submit button prominent with a clear CTA
 - Add inline validation and helpful placeholders
 - Consider which fields are truly required vs optional
-- It should look like Linear where the options are just badges`
+- It should look like the Linear UI where the options are just badges`
 
   const copyPrompt = () => {
     navigator.clipboard.writeText(demoPrompt)
