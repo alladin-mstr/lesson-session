@@ -118,6 +118,15 @@ export function QuizHost() {
     send({ type: "start_game" });
   }, [send]);
 
+  const handleReset = useCallback(() => {
+    send({ type: "reset_game" });
+    setPhase("lobby");
+    setQuestionData(null);
+    setAnswerCount(0);
+    setRevealData(null);
+    setRankings([]);
+  }, [send]);
+
   return (
     <QuizLayout>
       {!connected && (
@@ -127,7 +136,7 @@ export function QuizHost() {
       )}
 
       {phase === "lobby" && (
-        <HostLobby players={players} onStart={handleStart} />
+        <HostLobby players={players} onStart={handleStart} onReset={handleReset} />
       )}
 
       {phase === "question" && questionData && (

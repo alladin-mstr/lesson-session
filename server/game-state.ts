@@ -82,6 +82,11 @@ export class GameManager {
         this.sendQuestion();
         break;
 
+      case "reset_game":
+        if (!client.isHost) return;
+        this.resetGame();
+        break;
+
       case "next":
         if (!client.isHost) return;
         if (this.phase === "question") {
@@ -132,6 +137,27 @@ export class GameManager {
         });
         break;
     }
+  }
+
+  private resetGame() {
+    // Reset game state
+    this.phase = "lobby";
+    this.currentQuestionIndex = 0;
+    this.questionStartTime = null;
+    this.answers.clear();
+
+    // Reset all players' scores and streaks
+    for (const player of this.players.values()) {
+      player.score = 0;
+      player.streak = 0;
+      player.lastAnswerCorrect = null;
+      player.lastPoints = 0;
+      player.currentAnswer = null;
+      player.answerTime = null;
+    }
+
+    // Notify everyone to go back to lobby
+    this.sendLobbyUpdate();
   }
 
   private sendQuestion() {

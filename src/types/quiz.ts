@@ -41,6 +41,7 @@ export type ClientMessage =
   | { type: "host_join" }
   | { type: "player_join"; nickname: string }
   | { type: "start_game" }
+  | { type: "reset_game" }
   | { type: "next" }
   | { type: "submit_answer"; answerIndex: number };
 

@@ -891,6 +891,141 @@ export function ExamplesDemo({ activeIndex = 0 }: DemoProps) {
   )
 }
 
+// ─── Amateurish Login Demo — before/after comparison ───
+function AmateurishLoginDemo() {
+  const [showModern, setShowModern] = useState(false)
+
+  return (
+    <div className="space-y-3">
+      <div className="flex gap-2 mb-2">
+        <button
+          onClick={() => setShowModern(false)}
+          className={`font-mono text-xs px-3 py-1.5 rounded-full transition-all duration-300 ${
+            !showModern
+              ? "bg-red-500/20 text-red-400 border border-red-500/30"
+              : "bg-secondary text-muted-foreground border border-transparent hover:border-border"
+          }`}
+        >
+          Before
+        </button>
+        <button
+          onClick={() => setShowModern(true)}
+          className={`font-mono text-xs px-3 py-1.5 rounded-full transition-all duration-300 ${
+            showModern
+              ? "bg-green-500/20 text-green-400 border border-green-500/30"
+              : "bg-secondary text-muted-foreground border border-transparent hover:border-border"
+          }`}
+        >
+          After
+        </button>
+      </div>
+
+      {!showModern ? (
+        /* Old Bootstrap 3 style */
+        <div
+          className="p-4 space-y-3"
+          style={{
+            background: "#f5f5f5",
+            borderRadius: "3px",
+            border: "1px solid #ddd",
+            fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
+          }}
+        >
+          <h4 className="text-sm font-bold" style={{ color: "#333" }}>
+            Sign In
+          </h4>
+          <div className="space-y-2">
+            <div>
+              <label className="text-[10px] block mb-0.5" style={{ color: "#666" }}>Email address</label>
+              <input
+                type="text"
+                placeholder="Enter email"
+                className="w-full h-7 px-2 text-[11px] focus:outline-none"
+                style={{ border: "1px solid #ccc", borderRadius: "3px", background: "#fff", color: "#555" }}
+              />
+            </div>
+            <div>
+              <label className="text-[10px] block mb-0.5" style={{ color: "#666" }}>Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="w-full h-7 px-2 text-[11px] focus:outline-none"
+                style={{ border: "1px solid #ccc", borderRadius: "3px", background: "#fff", color: "#555" }}
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <input type="checkbox" style={{ accentColor: "#337ab7" }} />
+            <span className="text-[10px]" style={{ color: "#666" }}>Remember me</span>
+          </div>
+          <button
+            className="w-full py-1.5 text-xs font-bold"
+            style={{ background: "#337ab7", color: "#fff", border: "1px solid #2e6da4", borderRadius: "3px" }}
+          >
+            Sign in
+          </button>
+          <p className="text-[9px] text-center" style={{ color: "#999" }}>
+            &copy; 2014 MyWebApp
+          </p>
+        </div>
+      ) : (
+        /* Modern shadcn-inspired style */
+        <div className="p-5 space-y-4 rounded-xl border border-border bg-card">
+          <div className="text-center space-y-1">
+            <div className="w-10 h-10 mx-auto rounded-xl flex items-center justify-center mb-3"
+              style={{ background: "linear-gradient(135deg, hsl(36, 80%, 50%), hsl(36, 60%, 35%))" }}>
+              <span className="text-lg" style={{ color: "#0d0b08" }}>✦</span>
+            </div>
+            <h4 className="text-base font-semibold text-foreground">Welcome back</h4>
+            <p className="text-[11px] text-muted-foreground">Sign in to your account</p>
+          </div>
+          <div className="space-y-3">
+            <div>
+              <label className="text-[10px] font-medium text-foreground/70 block mb-1">Email</label>
+              <input
+                type="text"
+                placeholder="you@example.com"
+                className="w-full h-9 px-3 text-xs rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500/50 transition-all"
+              />
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-1">
+                <label className="text-[10px] font-medium text-foreground/70">Password</label>
+                <span className="text-[9px] text-amber-500 hover:text-amber-400 cursor-pointer transition-colors">
+                  Forgot password?
+                </span>
+              </div>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                className="w-full h-9 px-3 text-xs rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-amber-500/20 focus:border-amber-500/50 transition-all"
+              />
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 rounded border border-border flex items-center justify-center bg-amber-500/10 border-amber-500/30">
+              <span className="text-[9px] text-amber-400">✓</span>
+            </div>
+            <span className="text-[10px] text-muted-foreground">Keep me signed in</span>
+          </div>
+          <button
+            className="w-full py-2.5 text-xs font-semibold rounded-lg transition-all hover:brightness-110"
+            style={{ background: "linear-gradient(135deg, hsl(36, 80%, 50%), hsl(36, 80%, 40%))", color: "#0d0b08" }}
+          >
+            Sign in
+          </button>
+          <p className="text-[10px] text-center text-muted-foreground">
+            Don't have an account?{" "}
+            <span className="text-amber-500 hover:text-amber-400 cursor-pointer transition-colors">
+              Create one
+            </span>
+          </p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 // ─── Slide 6: Diminishing Goodwill — bad UX examples ───
 export function DiminishGoodwillDemo({ activeIndex = 0 }: DemoProps) {
   const cities = ["Manila", "Cebu", "Tokyo", "Singapore"]
@@ -1069,56 +1204,9 @@ export function DiminishGoodwillDemo({ activeIndex = 0 }: DemoProps) {
             </div>
           )}
 
-          {/* Amateurish login — old Bootstrap 3 style */}
+          {/* Amateurish login — old Bootstrap 3 style vs Modern */}
           {activeIndex === 3 && (
-            <div className="space-y-3">
-              <div
-                className="p-4 space-y-3"
-                style={{
-                  background: "#f5f5f5",
-                  borderRadius: "3px",
-                  border: "1px solid #ddd",
-                  fontFamily: "Helvetica Neue, Helvetica, Arial, sans-serif",
-                }}
-              >
-                <h4 className="text-sm font-bold" style={{ color: "#333" }}>
-                  Sign In
-                </h4>
-                <div className="space-y-2">
-                  <div>
-                    <label className="text-[10px] block mb-0.5" style={{ color: "#666" }}>Email address</label>
-                    <input
-                      type="text"
-                      placeholder="Enter email"
-                      className="w-full h-7 px-2 text-[11px] focus:outline-none"
-                      style={{ border: "1px solid #ccc", borderRadius: "3px", background: "#fff", color: "#555" }}
-                    />
-                  </div>
-                  <div>
-                    <label className="text-[10px] block mb-0.5" style={{ color: "#666" }}>Password</label>
-                    <input
-                      type="password"
-                      placeholder="Password"
-                      className="w-full h-7 px-2 text-[11px] focus:outline-none"
-                      style={{ border: "1px solid #ccc", borderRadius: "3px", background: "#fff", color: "#555" }}
-                    />
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <input type="checkbox" style={{ accentColor: "#337ab7" }} />
-                  <span className="text-[10px]" style={{ color: "#666" }}>Remember me</span>
-                </div>
-                <button
-                  className="w-full py-1.5 text-xs font-bold"
-                  style={{ background: "#337ab7", color: "#fff", border: "1px solid #2e6da4", borderRadius: "3px" }}
-                >
-                  Sign in
-                </button>
-                <p className="text-[9px] text-center" style={{ color: "#999" }}>
-                  &copy; 2014 MyWebApp
-                </p>
-              </div>
-            </div>
+            <AmateurishLoginDemo />
           )}
         </div>
       </div>

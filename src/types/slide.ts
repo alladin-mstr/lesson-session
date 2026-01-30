@@ -1,4 +1,4 @@
-export type SlideType = "title" | "content" | "list" | "quote"
+export type SlideType = "title" | "content" | "list" | "quote" | "book"
 
 export interface Slide {
   id: number
@@ -7,6 +7,7 @@ export interface Slide {
   content: string | string[]
   subtitle?: string
   image?: string
+  secondaryImage?: string
   accent?: string
   number?: string
 }

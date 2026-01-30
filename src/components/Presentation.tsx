@@ -15,6 +15,12 @@ import {
   ThankYouDemo,
 } from "@/components/InteractiveDemos"
 import type { DemoProps } from "@/components/InteractiveDemos"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const DEMO_MAP: Record<number, React.ComponentType<any>> = {
@@ -238,7 +244,65 @@ function SlideContent({ slide }: { slide: Slide }) {
   if (slide.type === "list") {
     return <ListSlide slide={slide} demo={DemoComponent} />
   }
+  if (slide.type === "book") {
+    return <BookSlide slide={slide} />
+  }
   return <ContentSlide slide={slide} demo={DemoComponent} />
+}
+
+// ─── Book Slide ────────────────────────────────────────────────────────────────
+
+function BookSlide({ slide }: { slide: Slide }) {
+  return (
+    <div className="flex items-center justify-between gap-12">
+      {/* Left: Book cover */}
+      <div className="flex-shrink-0 scale-reveal">
+        {slide.image && (
+          <img
+            src={slide.image}
+            alt="Book cover"
+            className="w-48 h-auto rounded-lg shadow-2xl shadow-black/40 border border-amber-500/10"
+          />
+        )}
+      </div>
+      {/* Center: Text */}
+      <div className="flex-1 space-y-6">
+        <div className="fade-up">
+          <p className="font-mono text-[10px] tracking-[0.3em] uppercase text-amber-500/50 mb-3">
+            {slide.number}
+          </p>
+          <h2 className="font-display text-5xl italic text-foreground leading-tight">
+            {slide.title}
+          </h2>
+        </div>
+        <div className="fade-up fade-up-delay-1">
+          <div className="w-10 h-px bg-amber-500/20 mb-5" />
+          <p className="font-body text-lg text-muted-foreground leading-relaxed max-w-md">
+            {typeof slide.content === "string" ? <RichText text={slide.content} /> : slide.content[0]}
+          </p>
+        </div>
+        <div className="fade-up fade-up-delay-2 flex items-center gap-3 pt-2">
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full"
+              style={{ background: `hsla(36, 80%, 56%, ${0.6 - i * 0.2})` }}
+            />
+          ))}
+        </div>
+      </div>
+      {/* Right: Timeline */}
+      <div className="flex-shrink-0 scale-reveal" style={{ animationDelay: "0.2s" }}>
+        {slide.secondaryImage && (
+          <img
+            src={slide.secondaryImage}
+            alt="Timeline"
+            className="w-64 h-auto rounded-lg border border-border/50"
+          />
+        )}
+      </div>
+    </div>
+  )
 }
 
 // ─── Title Slide ───────────────────────────────────────────────────────────────
@@ -490,6 +554,34 @@ function ContentSlide({ slide, demo: Demo }: { slide: Slide; demo?: React.Compon
 function ListSlide({ slide, demo: Demo }: { slide: Slide; demo?: React.ComponentType<DemoProps> }) {
   const [activeIndex, setActiveIndex] = useState(0)
 
+  // Helper to render title with Goodwill tooltip
+  const renderTitle = (title: string) => {
+    if (title.includes("Goodwill")) {
+      const parts = title.split("Goodwill")
+      return (
+        <>
+          {parts[0]}
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <span className="underline decoration-amber-500/40 decoration-dotted underline-offset-4 cursor-help">
+                  Goodwill
+                </span>
+              </TooltipTrigger>
+              <TooltipContent className="max-w-xs bg-card border border-border text-foreground">
+                <p className="text-sm">
+                  <strong className="text-amber-400">Goodwill</strong> is the reservoir of positive feelings users have toward your site. Every frustration drains it; every delightful experience fills it back up.
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+          {parts[1]}
+        </>
+      )
+    }
+    return title
+  }
+
   return (
     <div className="flex items-start justify-between gap-10">
       {/* Left: List content */}
@@ -499,7 +591,7 @@ function ListSlide({ slide, demo: Demo }: { slide: Slide; demo?: React.Component
             {slide.number}
           </p>
           <h2 className="font-display text-5xl italic text-foreground leading-tight">
-            {slide.title}
+            {renderTitle(slide.title)}
           </h2>
         </div>
         <div className="w-10 h-px bg-amber-500/20 fade-up fade-up-delay-1" />

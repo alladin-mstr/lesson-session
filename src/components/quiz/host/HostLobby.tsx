@@ -1,9 +1,10 @@
 interface HostLobbyProps {
   players: { id: string; nickname: string }[];
   onStart: () => void;
+  onReset: () => void;
 }
 
-export function HostLobby({ players, onStart }: HostLobbyProps) {
+export function HostLobby({ players, onStart, onReset }: HostLobbyProps) {
   const joinUrl = `${window.location.origin}/#/quiz/play`;
 
   return (
@@ -41,6 +42,13 @@ export function HostLobby({ players, onStart }: HostLobbyProps) {
         className="mt-4 px-12 py-4 rounded-2xl font-bold text-lg bg-primary text-primary-foreground hover:opacity-90 transition-opacity disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Start Game
+      </button>
+
+      <button
+        onClick={onReset}
+        className="px-8 py-2 rounded-xl font-medium text-sm text-muted-foreground hover:text-foreground border border-border hover:border-muted-foreground/50 transition-all"
+      >
+        Reset Quiz
       </button>
     </div>
   );

@@ -9,7 +9,10 @@
       "Bash(ngrok version:*)",
       "Bash(chmod:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(npx shadcn@latest add tooltip:*)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(npm run build:*)"
     ]
   }
 }

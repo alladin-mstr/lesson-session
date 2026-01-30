@@ -18,6 +18,16 @@ export const slides: Slide[] = [
     number: "01",
   },
   {
+    id: 12,
+    type: "book",
+    title: "About the Book",
+    content:
+      "\"Don't Make Me Think\" by Steve Krug — a timeless guide to web usability, first published in 2000 and still highly relevant today.",
+    image: "/cover.png",
+    secondaryImage: "/timeline.png",
+    number: "01b",
+  },
+  {
     id: 3,
     type: "content",
     title: "What's the Point?",
@@ -38,9 +48,9 @@ export const slides: Slide[] = [
     type: "list",
     title: "Examples",
     content: [
-      "Google's \"45-Second Stare\" — users couldn't find the footer.",
-      "Checkbox vs Radio — circular selectors look like radio buttons.",
-      "Bounce Effect — instant signal you've reached the edge.",
+      "Google's \"45-Second Stare\"",
+      "Checkbox vs Radio",
+      "Bounce Effect",
     ],
     number: "04",
   },
